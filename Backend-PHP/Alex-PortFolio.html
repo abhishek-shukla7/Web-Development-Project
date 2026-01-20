@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alex | Graphic Designer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+:root {
+    --primary: #00ffd5;
+    --secondary: #7f5cff;
+    --dark: #0f172a;
+    --glass: rgba(255,255,255,0.12);
+    --border: rgba(255,255,255,0.2);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #312e81, #0f766e);
+    background-size: 400% 400%;
+    animation: bgMove 12s infinite ease-in-out;
+    color: white;
+}
+
+
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border);
+    padding: 15px 35px;
+    border-radius: 50px;
+    display: flex;
+    gap: 25px;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+
+section {
+    min-height: 100vh;
+    padding: 120px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.hero h1 {
+    font-size: 4rem;
+}
+
+.hero span {
+    color: var(--primary);
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.hero button {
+    width: fit-content;
+    padding: 14px 35px;
+    border-radius: 40px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.hero button:hover {
+    transform: scale(1.08);
+}
+
+
+.glass-box {
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    padding: 40px;
+    border-radius: 25px;
+    max-width: 800px;
+}
+
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.skill {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 20px;
+}
+
+.progress {
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    width: 0;
+}
+
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.project {
+    position: relative;
+    background: var(--glass);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 220px;
+    cursor: pointer;
+}
+
+.project::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.project:hover::before {
+    opacity: 0.9;
+}
+
+.project div {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.project:hover div {
+    opacity: 1;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 15px;
+}
+
+input, textarea {
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+form button {
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+footer {
+    text-align: center;
+    padding: 30px;
+    opacity: 0.8;
+}
+
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 1s;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero" id="home">
+    <h1>Hi, I'm <span>Alex</span></h1>
+    <p>Freelance graphic designer crafting modern, meaningful and visually powerful digital experiences.</p>
+    <button onclick="location.href='#contact'">Hire Me</button>
+</section>
+
+<section id="about">
+    <div class="glass-box reveal">
+        <h2>About Me</h2><br>
+        <p>
+            I specialize in brand identity, UI design, and creative visual solutions.
+            My goal is to make brands stand out with clarity, creativity and impact.
+        </p>
+    </div>
+</section>
+
+<section id="skills">
+    <h2 class="reveal">Skills</h2><br>
+    <div class="skills">
+        <div class="skill reveal">Logo Design
+            <div class="progress"><div style="width:90%"></div></div>
+        </div>
+        <div class="skill reveal">Photoshop
+            <div class="progress"><div style="width:85%"></div></div>
+        </div>
+        <div class="skill reveal">Illustrator
+            <div class="progress"><div style="width:80%"></div></div>
+        </div>
+        <div class="skill reveal">UI/UX Design
+            <div class="progress"><div style="width:75%"></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="work">
+    <h2 class="reveal">Projects</h2><br>
+    <div class="projects">
+        <div class="project reveal"><div><h3>Brand Identity</h3><p>Startup Branding</p></div></div>
+        <div class="project reveal"><div><h3>Social Media</h3><p>Marketing Campaign</p></div></div>
+        <div class="project reveal"><div><h3>UI Design</h3><p>Website Interface</p></div></div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="reveal">Contact Me</h2><br>
+    <form class="reveal">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea rows="4" placeholder="Your Message"></textarea>
+        <button>Send Message</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 Alex | Premium Graphic Designer
+</footer>
+
+<script>
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+    reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            el.classList.add("active");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
