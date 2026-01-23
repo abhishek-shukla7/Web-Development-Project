@@ -16,4 +16,35 @@ calculateTotal(70, 80, 90);
 
 
 
+<!-- Design and implement a rregistration form the innovate-2024 event.the form should meeth the following
+ requirements  -->
+ <!-- form fields -->
+<!-- 
+1.Full Name
+2.Email Address
+3.Gender(with options:Male,female,other,prefer not to say) 
+4.Age
+5.Address(with fields for street,city,)
+
+
+
+
+
+
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
