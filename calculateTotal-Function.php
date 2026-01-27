@@ -2,7 +2,8 @@
  the function ,a variable $total is declared and used .After calling the function,the programmer
  tries to print $total outside the function  -->
 
-
+<html>
+<body>
 <?php
 function calculateTotal($m1, $m2, $m3) {
     $total = $m1 + $m2 + $m3;
@@ -11,9 +12,5 @@ function calculateTotal($m1, $m2, $m3) {
 
 calculateTotal(70, 80, 90);
 ?>
-
-
-
-
-
-
+</body>
+</html>
