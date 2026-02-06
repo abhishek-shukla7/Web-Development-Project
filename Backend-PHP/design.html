@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grid Layout</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f2f2f2;
+            font-family: Arial;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 150px 150px 150px;
+            gap: 10px;
+        }
+
+        .box {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .box:hover {
+            background: #2196F3;
+            transform: scale(1.05);
+        }
+
+        .header {
+            grid-column: 1 / 4;
+            background: #ff7043;
+        }
+
+        .sidebar {
+            grid-row: 2 / 5;
+            background: #26a69a;
+        }
+
+        .content1 {
+            grid-column: 2 / 4;
+        }
+
+        .footer {
+            grid-column: 1 / 4;
+            background: #455a64;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="box header">Header</div>
+    <div class="box sidebar">Side Bar</div>
+    <div class="box content1">Content 1</div>
+    <div class="box">Content 2</div>
+    <div class="box">Content 3</div>
+    <div class="box footer">Footer</div>
+</div>
+
+</body>
+</html>
