@@ -28,8 +28,8 @@ foreach ($days as $day) {
    
     $weeklySchedule[$day] = []; 
 }
-$weeklySchedule["Monday"][] = "Complete PHP Assignment";
-$weeklySchedule["Wednesday"][] = "Team Meeting at 10 AM";
+$weeklySchedule["Monday"][] = "Go to walk ";
+$weeklySchedule["Wednesday"][] = "FOOTBALL MATCH WITH FRIENDS";
 displayDayTasks($weeklySchedule, "Monday");
 displayDayTasks($weeklySchedule, "Tuesday");
 echo "<h2>Full Weekly Schedule</h2>";
