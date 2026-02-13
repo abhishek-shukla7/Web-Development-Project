@@ -10,7 +10,7 @@ Conditions:
 
 
 <?php
-echo "<h1> CA-1 Question -2 <br>";
+echo "<h1> CA-1 Question -2 </h1>";
 
 $dayNumber = 3; 
 
