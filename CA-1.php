@@ -8,6 +8,7 @@ Provide an option for users to view all tasks for the entire week.
 Handle cases where there are no tasks scheduled for a specific day. -->
 
 <?php
+echo "<h1> CA-1 Question -1";
 function displayDayTasks($schedule, $day) {
     echo "<h3>Tasks for $day:</h3>";
     if (!empty($schedule[$day])) {
