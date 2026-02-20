@@ -9,38 +9,75 @@
 
 <?php
 
-$balance = 10000;  
+$balance = 10000;
 
-echo "Initial Balance : Rs " . $balance . "<br><br>";
+echo "<h2>ATM Withdrawal System</h2>";
+echo "<b>Initial Balance : Rs $balance</b><br><br>";
 
-for ($i = 1; $i <= 3; $i++) {
+if(isset($_REQUEST['withdraw'])){
 
-    $amount = readline("Enter withdrawal amount for Transaction $i : ");
+    for($i=1;$i<=3;$i++){
 
-    if ($amount > $balance) {
+        $amount = $_REQUEST['amt'.$i];
 
-        echo "Insufficient Balance\n";
+        if($amount > $balance){
 
-    } elseif ($amount <= 0) {
+            echo "Transaction $i : Insufficient Balance <br>";
 
-        echo "Invalid Amount\n";
+        }
+        elseif($amount <=0 || $amount==""){
 
-    } else {
+            echo "Transaction $i : Invalid Amount <br>";
+        }
+        else{
 
-        $balance = $balance - $amount;
+            $balance = $balance - $amount;
 
-        echo "Withdrawal Successful\n";
-        echo "Remaining Balance : Rs " . $balance . "\n";
+            echo "Transaction $i Successful <br>";
+            echo "Remaining Balance : Rs $balance <br>";
+        }
+
+        echo "--------------------------- <br>";
     }
 
-    echo "-------------------------\n";
+    echo "<h3>Final Balance : Rs $balance</h3>";
 }
-
-echo "Final Balance : Rs " . $balance;
 
 ?>
 
+<h3>Withdraw Money</h3>
 
+<form method="post">
+
+Transaction 1 :
+<input type="number" name="amt1"><br><br>
+
+Transaction 2 :
+<input type="number" name="amt2"><br><br>
+
+Transaction 3 :
+<input type="number" name="amt3"><br><br>
+
+<input type="submit" name="withdraw" value="Withdraw Using POST">
+
+</form>
+
+<hr>
+
+<form method="get">
+
+Transaction 1 :
+<input type="number" name="amt1"><br><br>
+
+Transaction 2 :
+<input type="number" name="amt2"><br><br>
+
+Transaction 3 :
+<input type="number" name="amt3"><br><br>
+
+<input type="submit" name="withdraw" value="Withdraw Using GET">
+
+</form>
 
 
 
