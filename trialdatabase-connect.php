@@ -11,7 +11,7 @@ if ($conn->connect_error)
     }
 
 else{
-    echo "successfully connected no problem";
+    echo "success8fully connected no problem";
 }
 
 
