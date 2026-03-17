@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Solar Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #f4f6f8;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 150px;
+      margin: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* 🔥 GRID FIX */
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    /* 🔥 FIXED SIZE BOX */
+    .chart-box {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      height: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .alert {
+      margin-top: 20px;
+      font-weight: bold;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>☀ Solar Performance Dashboard</h1>
+
+<div class="cards">
+  <div class="card">Voltage: <span id="voltage">--</span> V</div>
+  <div class="card">Current: <span id="current">--</span> A</div>
+  <div class="card">Temperature: <span id="temp">--</span> °C</div>
+  <div class="card">Power: <span id="power">--</span> W</div>
+</div>
+
+<!-- ✅ CHARTS -->
+<div class="charts">
+  <div class="chart-box">
+    <canvas id="voltageChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <canvas id="currentChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <canvas id="tempChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <canvas id="powerChart"></canvas>
+  </div>
+</div>
+
+<div id="alert" class="alert"></div>
+
+<script>
+  const voltageEl = document.getElementById("voltage");
+  const currentEl = document.getElementById("current");
+  const tempEl = document.getElementById("temp");
+  const powerEl = document.getElementById("power");
+  const alertEl = document.getElementById("alert");
+
+  function createChart(id, label, color) {
+    return new Chart(document.getElementById(id), {
+      type: "line",
+      data: {
+        labels: [],
+        datasets: [{
+          label: label,
+          data: [],
+          borderColor: color,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false   // 🔥 IMPORTANT FIX
+      }
+    });
+  }
+
+  const voltageChart = createChart("voltageChart", "Voltage (V)", "blue");
+  const currentChart = createChart("currentChart", "Current (A)", "green");
+  const tempChart = createChart("tempChart", "Temperature (°C)", "red");
+  const powerChart = createChart("powerChart", "Power (W)", "orange");
+
+  function updateChart(chart, value) {
+    const time = new Date().toLocaleTimeString();
+
+    chart.data.labels.push(time);
+    chart.data.datasets[0].data.push(value);
+
+    if (chart.data.labels.length > 10) {
+      chart.data.labels.shift();
+      chart.data.datasets[0].data.shift();
+    }
+
+    chart.update();
+  }
+
+  function generateData() {
+    let voltage = (Math.random() * 50 + 200).toFixed(2);
+    let current = (Math.random() * 10).toFixed(2);
+    let temp = (Math.random() * 45).toFixed(2);
+    let power = (voltage * current).toFixed(2);
+
+    voltageEl.textContent = voltage;
+    currentEl.textContent = current;
+    tempEl.textContent = temp;
+    powerEl.textContent = power;
+
+    updateChart(voltageChart, voltage);
+    updateChart(currentChart, current);
+    updateChart(tempChart, temp);
+    updateChart(powerChart, power);
+
+    if (temp > 35) {
+      alertEl.textContent = "⚠ High Temperature Warning!";
+    } else {
+      alertEl.textContent = "";
+    }
+  }
+
+  setInterval(generateData, 2000);
+</script>
+
+</body>
+</html>
