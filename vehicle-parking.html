@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Parking Assistance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+        }
+
+        .parking-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .slot {
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .available {
+            background: #27ae60;
+        }
+
+        .occupied {
+            background: #e74c3c;
+        }
+
+        .slot:hover {
+            transform: scale(1.05);
+        }
+
+        .info-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            background: #2980b9;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #1f6692;
+        }
+    </style>
+</head>
+<body>
+
+    <header>Vehicle Parking Assistance System</header>
+
+    <div class="container">
+        <h2>Parking Slot Availability</h2>
+        <div class="parking-grid" id="parkingGrid"></div>
+
+        <div class="info-box">
+            <h3 id="statusText">Click a slot to book or free it</h3>
+            <p id="summary"></p>
+            <button onclick="resetParking()">Reset Parking</button>
+        </div>
+    </div>
+
+    <script>
+        const parkingSlots = [
+            { id: 1, occupied: false },
+            { id: 2, occupied: true },
+            { id: 3, occupied: false },
+            { id: 4, occupied: true },
+            { id: 5, occupied: false },
+            { id: 6, occupied: false },
+            { id: 7, occupied: true },
+            { id: 8, occupied: false }
+        ];
+
+        function renderParking() {
+            const grid = document.getElementById("parkingGrid");
+            grid.innerHTML = "";
+
+            parkingSlots.forEach(slot => {
+                const div = document.createElement("div");
+                div.className = `slot ${slot.occupied ? "occupied" : "available"}`;
+                div.innerText = `Slot ${slot.id}\n${slot.occupied ? "Occupied" : "Available"}`;
+                div.onclick = () => toggleSlot(slot.id);
+                grid.appendChild(div);
+            });
+
+            updateSummary();
+        }
+
+        function toggleSlot(id) {
+            const slot = parkingSlots.find(s => s.id === id);
+            slot.occupied = !slot.occupied;
+
+            document.getElementById("statusText").innerText =
+                `Slot ${id} is now ${slot.occupied ? "Occupied" : "Available"}`;
+
+            renderParking();
+        }
+
+        function updateSummary() {
+            const occupiedCount = parkingSlots.filter(slot => slot.occupied).length;
+            const availableCount = parkingSlots.length - occupiedCount;
+
+            document.getElementById("summary").innerHTML =
+                `Available Slots: <b>${availableCount}</b> | Occupied Slots: <b>${occupiedCount}</b>`;
+        }
+
+        function resetParking() {
+            parkingSlots.forEach(slot => slot.occupied = false);
+            document.getElementById("statusText").innerText = "All slots have been reset";
+            renderParking();
+        }
+
+        renderParking();
+    </script>
+
+</body>
+</html>
