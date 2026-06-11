@@ -111,17 +111,3 @@ xampp/htdocs/
 ```text
 http://localhost/project-folder-name
 ```
-
-## Author
-
-**Abhishek Shukla**
-
-BCA (Big Data Analytics) Student
-Lovely Professional University
-
-GitHub:
-https://github.com/abhishek-shukla7
-
----
-
-Thank you for visiting this repository. Feedback and suggestions are always welcome.
